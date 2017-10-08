@@ -15,20 +15,20 @@ class TencentSpider(scrapy.Spider):
         for node in node_list:
             item = TencentItem()                      #.extract()作用:内容转换为字符串
             if len(node.xpath("./td[1]/a/text()")):
-                item['positionName'] = node.xpath("./td[1]/a/text()")#.extract()[0].encode("utf-8")
+                item['positionName'] = node.xpath("./td[1]/a/text()").extract()[0].encode("utf-8")
             else:
                 item['positionName'] = ""
             if len(node.xpath("./td[1]/a/@href")):
-                item['positionLink']= node.xpath("./td[1]/a/@href")#.extract()[0].encode("utf-8")
+                item['positionLink']= node.xpath("./td[1]/a/@href").extract()[0].encode("utf-8")
             else:
                 item['positionLink'] = ""
             if len(node.xpath("./td[2]/text()")):
-                item['positionType'] = node.xpath("./td[2]/text()")#.extract()[0].encode("utf-8")
+                item['positionType'] = node.xpath("./td[2]/text()").extract()[0].encode("utf-8")
             else:
                 item['positionType'] = ""
-            item['positionNumber'] = node.xpath("./td[3]/text()")#.extract()[0].encode("utf-8")
-            item['workLocation'] = node.xpath("./td[4]/text()")#.extract()[0].encode("utf-8")
-            item['publishTime'] = node.xpath("./td[5]/text()")#.extract()[0].encode("utf-8")
+            item['positionNumber'] = node.xpath("./td[3]/text()").extract()[0].encode("utf-8")
+            item['workLocation'] = node.xpath("./td[4]/text()").extract()[0].encode("utf-8")
+            item['publishTime'] = node.xpath("./td[5]/text()").extract()[0].encode("utf-8")
 
             yield item
         if self.offset < 2190:
